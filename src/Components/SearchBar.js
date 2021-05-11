@@ -1,6 +1,6 @@
-import React from 'react'
+import { Component } from 'react'
 
-class SearchBar extends React.Component {
+class SearchBar extends Component {
   // control input
   // submit goes back up to top Component
   constructor () {

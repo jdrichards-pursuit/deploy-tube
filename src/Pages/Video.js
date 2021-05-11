@@ -3,10 +3,9 @@ import YouTube from 'react-youtube'
 import {Link, useParams} from 'react-router-dom'
 
 // COMPONENTS
-import CommentForm from '../Components/CommentForm'
 import Comments from '../Components/Comments'
 
-export default function Video () {
+export default function Video (props) {
   let {id} = useParams()
     return (
       <div className="Video">
@@ -17,8 +16,7 @@ export default function Video () {
           <YouTube
             videoId={id}
           />
-          <CommentForm />
-          <Comments />
+        <Comments videoId={id} comments={props.comments} addComment={props.addComment}/>
         </main>
       </div>
     )

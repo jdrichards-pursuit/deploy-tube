@@ -1,12 +1,13 @@
 // DEPENDENCIES
-import React from 'react'
+import { Component } from 'react'
 import {
   Link
-} from "react-router-dom";
+} from "react-router-dom"
+
 
 import VideoCard from './VideoCard'
 
-class VideoCards extends React.Component {
+class VideoCards extends Component {
 
   render () {
     return (
@@ -14,9 +15,9 @@ class VideoCards extends React.Component {
         <main>
           <h2>A List of Videos</h2>
           {
-            this.props.videos.map(video=> {
+            this.props.videos.map((video, i)=> {
               return (
-                <Link key={video.id.videoId} to={`/video/${video.id.videoId}`} >
+                <Link key={video.id.videoId + i} to={`/video/${video.id.videoId}`} >
                   <VideoCard video={video}/>
                 </Link>
               )

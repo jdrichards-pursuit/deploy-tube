@@ -12,9 +12,11 @@ class Home extends React.Component {
     super ()
       this.state = {
         showVideos: false,
-        videos: []
+        videos: [],
       }
    }
+
+
 
    getVideos = (searchCriteria) => {
      axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&kind=video&q=${searchCriteria}&key=${API_KEY}`)
@@ -25,7 +27,6 @@ class Home extends React.Component {
          })
        })
    }
-
 
    toggleVideos = () => {
      this.setState({
@@ -39,7 +40,7 @@ class Home extends React.Component {
         <SearchBar getVideos={this.getVideos}/>
         {
           this.state.showVideos
-          ? <VideoCards videos={this.state.videos}/>
+          ? <VideoCards videos={this.state.videos} />
         : <NoVideos />
         }
       </div>
