@@ -13,7 +13,6 @@ class VideoCards extends Component {
     return (
       <div>
         <main>
-          <h2>A List of Videos</h2>
           {
             this.props.videos.map((video, i)=> {
               return (

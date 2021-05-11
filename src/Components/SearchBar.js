@@ -1,8 +1,7 @@
 import { Component } from 'react'
 
 class SearchBar extends Component {
-  // control input
-  // submit goes back up to top Component
+
   constructor () {
     super()
     this.state = {
@@ -23,9 +22,9 @@ class SearchBar extends Component {
   render () {
     return (
       <div>
-        <h2>Search Bar</h2>
+        <h2>Search for some videos</h2>
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="video">Search:</label>
+            <label htmlFor="video"></label>
             <input type="text" placeholder="search for a video" id="video" value={this.state.video} onChange={this.handleChange}/>
             <input type="submit" />
           </form>
