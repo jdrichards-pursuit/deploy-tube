@@ -11,3 +11,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+nav {
+  border: 4px solid red;
+}
+
+#root {
+  border: 4px solid blue;
+}
+
+/* .App > div {
+  border: 4px solid gold;
+} */
+
+.Home {
+  border: 8px double orchid;
+  height: 90vh;
+}
+
+.About {
+  border: 8px dashed goldenrod;
+  height: 90vh;
+}
+
+.Video {
+  border: 8px dotted teal;
+  height: 90vh;
+}
