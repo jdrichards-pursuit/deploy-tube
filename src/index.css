@@ -25,21 +25,17 @@ nav {
   border: 4px solid blue;
 }
 
-/* .App > div {
-  border: 4px solid gold;
-} */
-
 .Home {
   border: 8px double orchid;
-  height: 90vh;
+  min-height: 90vh;
 }
 
 .About {
   border: 8px dashed goldenrod;
-  height: 90vh;
+  min-height: 90vh;
 }
 
 .Video {
   border: 8px dotted teal;
-  height: 90vh;
+  min-height: 90vh;
 }

@@ -1,5 +1,7 @@
 // DEPENDENCIES
 import React from 'react'
+import axios from 'axios'
+import API_KEY from '../secret.js'
 
 import SearchBar from '../Components/SearchBar'
 import NoVideos from '../Components/NoVideos'
@@ -9,23 +11,35 @@ class Home extends React.Component {
   constructor () {
     super ()
       this.state = {
-        showVideos: false
+        showVideos: false,
+        videos: []
       }
    }
+
+   getVideos = (searchCriteria) => {
+     axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&kind=video&q=${searchCriteria}&key=${API_KEY}`)
+       .then(response => {
+         this.setState({
+           videos: response.data.items,
+           showVideos: true
+         })
+       })
+   }
+
+
    toggleVideos = () => {
      this.setState({
        showVideos: !this.state.showVideos
      })
    }
+
   render () {
     return (
       <div className="Home">
-        <SearchBar />
-        <NoVideos />
-        <h3 style={{color: "blue" }} onClick={this.toggleVideos}>Toggle Videos (temporary until API connected)</h3>
+        <SearchBar getVideos={this.getVideos}/>
         {
           this.state.showVideos
-          ? <VideoCards />
+          ? <VideoCards videos={this.state.videos}/>
         : <NoVideos />
         }
       </div>

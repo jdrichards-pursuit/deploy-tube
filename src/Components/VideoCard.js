@@ -1,9 +1,9 @@
-export default function VideoCard() {
-   // link to show page
-   // link wraps around image & title
+export default function VideoCard(props) {
+   const { video } = props
     return (
       <div>
-          <h4>A Single Video</h4>
+          <h4>{video.snippet.title}</h4>
+          <img src={video.snippet.thumbnails.default.url} alt={ video.snippet.title }/>
       </div>
     )
 }
