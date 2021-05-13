@@ -1,7 +1,7 @@
 // DEPENDENCIES
 import React from 'react'
 import axios from 'axios'
-import API_KEY from '../secret.js'
+import API_KEY_LOCAL from '../secret.js'
 
 import SearchBar from '../Components/SearchBar'
 import NoVideos from '../Components/NoVideos'
@@ -19,7 +19,7 @@ class Home extends React.Component {
 
 
    getVideos = (searchCriteria) => {
-     axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&kind=video&q=${searchCriteria}&key=${API_KEY}`)
+     axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&kind=video&q=${searchCriteria}&key=${REACT_APP_API_KEY || API_KEY_LOCAL}`)
        .then(response => {
          this.setState({
            videos: response.data.items,

@@ -103,6 +103,6 @@ a {
   margin-left: 10%;
 }
 
-.VideoCard:nth-child(2) {
+.Home main a:hover {
   background-color: var(--dark-night);
 }
