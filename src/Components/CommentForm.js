@@ -22,7 +22,7 @@ class CommentForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.addComment(this.state)
-    this.setState({name: '', comment: '', id: ''})
+    this.setState({name: '', comment: ''})
   }
 
   render () {
