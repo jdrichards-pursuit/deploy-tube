@@ -1,52 +1,34 @@
-// DEPENDENCIES
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom"
-import { Component } from 'react'
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // COMPONENTS
-import About from './Pages/About'
-import Home from './Pages/Home'
-import Video from './Pages/Video'
-import NavBar from './Components/NavBar'
+import About from "./pages/About";
+import Home from "./pages/Home";
+import Video from "./pages/Video";
+import NavBar from "./components/NavBar";
 
-import './App.css';
+function App() {
+  const [comments, setComments] = useState([]);
 
-class App extends Component {
-  constructor () {
-    super()
-    this.state = {
-      comments: []
-    }
+  function addComment(obj) {
+    const updateComments = [...comments, obj];
+    setComments(updateComments);
   }
-
-  addComment = (obj) => {
-    const updateComments = [...this.state.comments, obj]
-    this.setState({comments: updateComments})
-  }
-
-  render () {
-    return (
-      <div className="App">
+  return (
+    <div className="App">
       <Router>
         <NavBar />
-          <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/video/:id">
-            <Video comments={this.state.comments} addComment={this.addComment}/>
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route
+            path="/video/:id"
+            element={<Video comments={comments} addComment={addComment} />}
+          />
+        </Routes>
       </Router>
-      </div>
-    )
-  }
+    </div>
+  );
 }
 
-export default App
+export default App;

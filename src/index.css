@@ -1,30 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
 :root {
   --dark-night: rgb(53, 80, 112);
   --deep-night: #010101;
-  --plum-dream:rgb(109, 89, 122);
-  --merlot-spritzer:rgb(181, 101, 118);
-  --pomegranite-lite:rgb(229, 107, 111);
+  --plum-dream: rgb(109, 89, 122);
+  --merlot-spritzer: rgb(181, 101, 118);
+  --pomegranite-lite: rgb(229, 107, 111);
   --toasted-almond: rgb(234, 172, 139);
   --latte-highlighter: #f7ede2;
-
   --main-height: 89vh;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--deep-night);
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   color: var(--latte-highlighter);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -54,7 +53,7 @@ header {
 }
 
 main {
-  background-color:var(--deep-night);
+  background-color: var(--deep-night);
   min-height: var(--main-height);
 }
 
@@ -62,13 +61,13 @@ input {
   padding: 1em;
 }
 
-input[type=submit] {
+input[type="submit"] {
   background: var(--plum-dream);
   color: var(--latte-highlighter);
-  font-weight:bold;
+  font-weight: bold;
 }
 
-input[type=submit]:hover {
+input[type="submit"]:hover {
   opacity: 0.9;
 }
 

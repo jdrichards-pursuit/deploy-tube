@@ -1,36 +1,34 @@
-import { Component } from 'react'
+import { useState } from "react";
 
-class SearchBar extends Component {
+function SearchBar({ getVideos }) {
+  const [video, setVideo] = useState("");
 
-  constructor () {
-    super()
-    this.state = {
-      video: ''
-    }
+  function handleChange(event) {
+    setVideo(event.target.value);
   }
 
-  handleChange = (event) => {
-    this.setState({[event.target.id]: event.target.value});
+  function handleSubmit(event) {
+    event.preventDefault();
+    getVideos(video);
+    setVideo("");
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault()
-    this.props.getVideos(this.state.video)
-    this.setState({video: ''})
-  }
-
-  render () {
-    return (
-      <div>
-        <h2>Search for some videos</h2>
-          <form onSubmit={this.handleSubmit}>
-            <label htmlFor="video"></label>
-            <input type="text" placeholder="search for a video" id="video" value={this.state.video} onChange={this.handleChange}/>
-            <input type="submit" />
-          </form>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <h2>Search for some videos</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="video"></label>
+        <input
+          type="text"
+          placeholder="search for a video"
+          id="video"
+          value={video}
+          onChange={handleChange}
+        />
+        <input type="submit" />
+      </form>
+    </div>
+  );
 }
 
-export default SearchBar
+export default SearchBar;
