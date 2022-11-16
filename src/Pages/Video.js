@@ -1,12 +1,9 @@
-// DEPENDENCIES
-import YouTube from "react-youtube";
-import { Link, useParams } from "react-router-dom";
+import YouTube from 'react-youtube';
+import { Link, useParams } from 'react-router-dom';
+import Comments from '../components/Comments';
 
-// COMPONENTS
-import Comments from "../components/Comments";
-
-export default function Video({ comments, addComment }) {
-  let { id } = useParams();
+export default function Video() {
+  const { id } = useParams();
   return (
     <div className="Video">
       <header>
@@ -14,7 +11,7 @@ export default function Video({ comments, addComment }) {
       </header>
       <main>
         <YouTube videoId={id} />
-        <Comments videoId={id} comments={comments} addComment={addComment} />
+        <Comments videoId={id} />
       </main>
     </div>
   );

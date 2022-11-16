@@ -1,33 +1,31 @@
 // DEPENDENCIES
-import { useState } from "react";
+import { useEffect } from 'react';
+import { useVideo } from '../context/VideoContext';
 
-import SearchBar from "../components/SearchBar";
-import NoVideos from "../components/NoVideos";
-import VideoCards from "../components/VideoCards";
+import SearchBar from '../components/SearchBar';
+import NoVideos from '../components/NoVideos';
+import VideoCards from '../components/VideoCards';
 
 function Home() {
-  const [showVideos, setShowVideos] = useState(false);
-  const [videos, setVideos] = useState([]);
+  // const [showVideos, setShowVideos] = useState(false);
+  // const [videos, setVideos] = useState([]);
 
-  function getVideos(searchCriteria) {
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&kind=video&q=${searchCriteria}&key=${process.env.REACT_APP_API_KEY}`
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        setVideos(response.items);
-        if (response.items) {
-          setShowVideos(true);
-        } else {
-          setShowVideos(false);
-        }
-      })
-      .catch((error) => console.error(error));
-  }
+  const { videos, getVideos, setVideos, setShowVideos, showVideos } =
+    useVideo();
+
+  useEffect(() => {
+    const x = window.localStorage.getItem('lastVideos');
+    console.log(x);
+    if (x) {
+      setVideos(JSON.parse(x));
+      setShowVideos(true);
+    }
+  }, [setVideos, setShowVideos]);
 
   return (
     <div className="Home">
       <SearchBar getVideos={getVideos} />
+
       {showVideos ? <VideoCards videos={videos} /> : <NoVideos />}
     </div>
   );

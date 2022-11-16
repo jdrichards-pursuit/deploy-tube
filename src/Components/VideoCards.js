@@ -1,12 +1,13 @@
 // DEPENDENCIES
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import VideoCard from "./VideoCard";
+import VideoCard from './VideoCard';
 
 function VideoCards({ videos }) {
   return (
     <div>
-      <main>
+      {console.log(videos)}
+      <main className="VideoMap">
         {videos.map((video, i) => {
           return (
             <Link key={video.id.videoId + i} to={`/video/${video.id.videoId}`}>

@@ -1,56 +1,56 @@
-import { Component } from "react";
+import { useState } from 'react';
+import { useVideo } from '../context/VideoContext';
 
-class CommentForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      id: "",
-      name: "",
-      comment: "",
-    };
-  }
+function CommentForm({ videoId }) {
+  const { comments, setComments } = useVideo();
 
-  componentDidMount() {
-    this.setState({ id: this.props.videoId });
-  }
+  const [comment, setComment] = useState({
+    id: videoId,
+    name: '',
+    comment: ''
+  });
 
-  handleChange = (event) => {
-    this.setState({ [event.target.id]: event.target.value });
+  // useEffect(() => {
+  //   setComment({ ...comment, id: videoId });
+  // }, [videoId]);
+
+  const handleChange = (event) => {
+    setComment({ ...comment, [event.target.id]: event.target.value });
   };
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.props.addComment(this.state);
-    this.setState({ name: "", comment: "" });
+
+    const updateComments = [...comments, comment];
+    setComments(updateComments);
+    setComment({ ...comment, name: '', comment: '' });
   };
 
-  render() {
-    return (
-      <div>
-        <h3>Comment Form </h3>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            placeholder="your name"
-            id="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="comment">Comment:</label>
-          <input
-            type="text"
-            placeholder="your comment"
-            id="comment"
-            value={this.state.comment}
-            onChange={this.handleChange}
-          />
-          <input type="submit" />
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h3>Comment Form </h3>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          placeholder="your name"
+          id="name"
+          value={comment.name}
+          onChange={handleChange}
+        />
+        <br />
+        <label htmlFor="comment">Comment:</label>
+        <input
+          type="text"
+          placeholder="your comment"
+          id="comment"
+          value={comment.comment}
+          onChange={handleChange}
+        />
+        <input type="submit" />
+      </form>
+    </div>
+  );
 }
 
 export default CommentForm;
