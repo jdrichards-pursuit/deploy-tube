@@ -10,10 +10,6 @@ function CommentForm({ videoId }) {
     comment: ''
   });
 
-  // useEffect(() => {
-  //   setComment({ ...comment, id: videoId });
-  // }, [videoId]);
-
   const handleChange = (event) => {
     setComment({ ...comment, [event.target.id]: event.target.value });
   };

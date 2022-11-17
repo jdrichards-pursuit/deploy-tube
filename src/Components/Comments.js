@@ -1,5 +1,5 @@
 import Comment from './Comment';
-import CommentForm from '../components/CommentForm';
+import CommentForm from './CommentForm';
 import { useVideo } from '../context/VideoContext';
 function Comments({ videoId }) {
   const { comments } = useVideo();

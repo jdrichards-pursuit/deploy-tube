@@ -7,9 +7,6 @@ import NoVideos from '../Components/NoVideos';
 import VideoCards from '../Components/VideoCards';
 
 function Home() {
-  // const [showVideos, setShowVideos] = useState(false);
-  // const [videos, setVideos] = useState([]);
-
   const { videos, getVideos, setVideos, setShowVideos, showVideos } =
     useVideo();
 
