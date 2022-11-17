@@ -3,10 +3,10 @@ import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
 // COMPONENTS
-import About from './pages/About';
-import Home from './pages/Home';
-import Video from './pages/Video';
-import NavBar from './components/NavBar';
+import About from './pages/About.js';
+import Home from './pages/Home.js';
+import Video from './pages/Video.js';
+import NavBar from './components/NavBar.js';
 
 function App() {
   // const [comments, setComments] = useState([]);
