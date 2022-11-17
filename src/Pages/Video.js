@@ -1,6 +1,6 @@
 import YouTube from 'react-youtube';
 import { Link, useParams } from 'react-router-dom';
-import Comments from '../components/Comments';
+import Comments from '../Components/Comments';
 
 export default function Video() {
   const { id } = useParams();

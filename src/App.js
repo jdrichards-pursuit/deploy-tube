@@ -6,7 +6,7 @@ import './App.css';
 import About from './Pages/About';
 import Home from './Pages/Home';
 import Video from './Pages/Video';
-import NavBar from './components/NavBar';
+import NavBar from './Components/NavBar';
 
 function App() {
   // const [comments, setComments] = useState([]);
