@@ -1,0 +1,68 @@
+import { createContext, useState, useContext } from 'react';
+
+export const VideoContext = createContext();
+export const useVideo = () => useContext(VideoContext);
+
+export const VideoProvider = ({ children }) => {
+  const [comments, setComments] = useState([]);
+  const [video, setVideo] = useState('');
+  const [videos, setVideos] = useState([]);
+  const [showVideos, setShowVideos] = useState(false);
+
+  function setLastVideos(res) {
+    window.localStorage.setItem('lastVideos', JSON.stringify(res));
+  }
+
+  function getVideos(searchCriteria) {
+    const url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&kind=video&q=${searchCriteria}&key=${process.env.REACT_APP_API_KEY}`;
+    const search = window.localStorage.getItem(searchCriteria);
+
+    if (search) {
+      console.log('used LocalStorage');
+      setLastVideos(JSON.parse(search));
+      setVideos(JSON.parse(search));
+      setShowVideos(true);
+    } else {
+      fetch(url)
+        .then((response) => response.json())
+        .then((response) => {
+          console.log('I fetched from API');
+          if (response.items.length === 0) {
+            setShowVideos(false);
+          } else {
+            window.localStorage.setItem(
+              searchCriteria,
+              JSON.stringify(response.items)
+            );
+            setLastVideos(response.items);
+            setVideos(response.items);
+            setShowVideos(true);
+          }
+        })
+        .catch((error) => console.error(error));
+    }
+  }
+
+  function addComment(obj) {
+    const updateComments = [...comments, obj];
+    setComments(updateComments);
+  }
+  return (
+    <VideoContext.Provider
+      value={{
+        comments,
+        setComments,
+        video,
+        setVideo,
+        videos,
+        setVideos,
+        getVideos,
+        addComment,
+        showVideos,
+        setShowVideos
+      }}
+    >
+      {children}
+    </VideoContext.Provider>
+  );
+};
