@@ -1,5 +1,6 @@
 // DEPENDENCIES
 import { useEffect } from 'react';
+
 import { useVideo } from '../context/VideoContext';
 
 import SearchBar from '../Components/SearchBar';
