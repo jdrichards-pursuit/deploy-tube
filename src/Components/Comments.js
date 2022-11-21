@@ -19,8 +19,8 @@ function Comments({ videoId }) {
         {comments.length > 0 &&
           comments
             .filter((comment) => comment.id === videoId)
-            .map((comment, i) => {
-              return <Comment key={comment.id + i} comment={comment} />;
+            .map((comment) => {
+              return <Comment key={comment.id} comment={comment} />;
             })}
       </main>
     </div>

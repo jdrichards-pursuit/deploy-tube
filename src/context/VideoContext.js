@@ -1,6 +1,5 @@
-import { createContext, useState, useContext, useEffect } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase/config';
+import { createContext, useState, useContext } from 'react';
+
 export const VideoContext = createContext();
 export const useVideo = () => useContext(VideoContext);
 
@@ -49,18 +48,19 @@ export const VideoProvider = ({ children }) => {
   //   setComments(updateComments);
   // }
 
-  useEffect(() => {
-    const fetchComments = async () => {
-      const data = await getDocs(collection(db, 'pursuit-tube-comments'));
-      const res = await data.docs.map((doc) => ({
-        ...doc.data()
-      }));
+  // useEffect(() => {
+  //   console.log('I ran in videoContxt for comments');
+  //   const fetchComments = async () => {
+  //     const data = await getDocs(collection(db, 'pursuit-tube-comments'));
+  //     const res = await data.docs.map((doc) => ({
+  //       ...doc.data()
+  //     }));
 
-      console.log('res', res);
-      if (res.length > 0) setComments(res[0].comments);
-    };
-    fetchComments();
-  }, []);
+  //     console.log('res', res);
+  //     if (res.length > 0) setComments(res[0].comments);
+  //   };
+  //   fetchComments();
+  // }, []);
   return (
     <VideoContext.Provider
       value={{
