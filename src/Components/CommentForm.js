@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useVideo } from '../context/VideoContext';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../firebase/config';
 
 function CommentForm({ videoId }) {
   const { comments, setComments } = useVideo();
@@ -14,11 +16,15 @@ function CommentForm({ videoId }) {
     setComment({ ...comment, [event.target.id]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const updateComments = [...comments, comment];
-    setComments(updateComments);
+    const updateComments = await [...comments, comment];
+    await addDoc(collection(db, 'pursuit-tube-comments'), {
+      comments: updateComments
+    });
+
+    await setComments(updateComments);
     setComment({ ...comment, name: '', comment: '' });
   };
 

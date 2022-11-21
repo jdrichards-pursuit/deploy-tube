@@ -12,7 +12,7 @@ function Home() {
 
   useEffect(() => {
     const x = window.localStorage.getItem('lastVideos');
-    console.log(x);
+
     if (x) {
       setVideos(JSON.parse(x));
       setShowVideos(true);
